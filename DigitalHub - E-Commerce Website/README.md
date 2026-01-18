@@ -63,7 +63,7 @@ digital-hub/
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/digital-hub.git
+git clone https://ruchik353.github.io/-DigitalHub---E-Commerce-Website/
 cd digital-hub
 ```
 
@@ -374,3 +374,4 @@ Give a ⭐️ if you found this project helpful!
 **Last Updated**: January 2025
 
 Made with ❤️ by [Ruchita Kadam]
+
