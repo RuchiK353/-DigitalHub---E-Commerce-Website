@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - DigitalHub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header>
+    <div class="navbar">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">📚</div>
+        DigitalHub
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Products Section -->
+  <section class="products-section">
+    <div class="container">
+      <h1 class="section-title">All Digital Products</h1>
+      <p class="section-subtitle">Browse our complete collection of digital products</p>
+
+      <!-- Search Bar -->
+      <div class="search-container">
+        <input 
+          type="text" 
+          class="search-input" 
+          id="searchInput" 
+          placeholder="Search products..."
+        >
+        <button class="search-btn" onclick="filterProducts()">Search</button>
+      </div>
+
+      <!-- Category Filters -->
+      <div class="filters">
+        <button class="filter-btn active" onclick="filterByCategory('')">All</button>
+        <button class="filter-btn" onclick="filterByCategory('Course')">Courses</button>
+        <button class="filter-btn" onclick="filterByCategory('Template')">Templates</button>
+        <button class="filter-btn" onclick="filterByCategory('Asset')">Assets</button>
+        <button class="filter-btn" onclick="filterByCategory('E-Book')">E-Books</button>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="productsGrid">
+        <div class="spinner"></div>
+      </div>
+
+      <!-- No Products Message -->
+      <div id="noProducts" class="hidden">
+        <p class="no-products">No products found. Try adjusting your filters.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>About Us</h3>
+          <p>DigitalHub is your one-stop destination for premium digital products including courses, templates, and assets.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Categories</h3>
+          <ul>
+            <li><a href="products.html?category=Course">Courses</a></li>
+            <li><a href="products.html?category=Template">Templates</a></li>
+            <li><a href="products.html?category=Asset">Assets</a></li>
+            <li><a href="products.html?category=E-Book">E-Books</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Info</h3>
+          <div class="footer-contact">
+            <div class="footer-contact-item">📧 support@digitalhub.com</div>
+            <div class="footer-contact-item">📞 +1 (234) 567-890</div>
+            <div class="footer-contact-item">📍 123 Digital Street, Tech City</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-divider">
+      <p>&copy; 2025 DigitalHub. All rights reserved. | Designed & Developed with ❤️</p>
+    </div>
+  </footer>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">✓ Success</div>
+      <div class="modal-body" id="modalMessage">Product added to cart successfully!</div>
+      <div class="modal-footer">
+        <button class="btn-confirm" onclick="closeModal()">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    let allProducts = [];
+    let currentCategory = '';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Get category from URL parameter
+      const params = new URLSearchParams(window.location.search);
+      const category = params.get('category');
+      if (category) {
+        currentCategory = category;
+      }
+      
+      loadProducts();
+    });
+
+    function loadProducts() {
+      fetch('/api/products')
+        .then(res => res.json())
+        .then(products => {
+          allProducts = products;
+          displayProducts(products);
+          
+          // Update filter button if category was in URL
+          if (currentCategory) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+              btn.classList.remove('active');
+              if (btn.textContent.toLowerCase().includes(currentCategory.toLowerCase())) {
+                btn.classList.add('active');
+              }
+            });
+            filterByCategory(currentCategory);
+          }
+        })
+        .catch(err => {
+          console.error('Error loading products:', err);
+          document.getElementById('productsGrid').innerHTML = '<p class="no-products">Error loading products</p>';
+        });
+    }
+
+    function displayProducts(products) {
+      const grid = document.getElementById('productsGrid');
+      const noProducts = document.getElementById('noProducts');
+
+      if (products.length === 0) {
+        grid.innerHTML = '';
+        noProducts.classList.remove('hidden');
+      } else {
+        grid.innerHTML = '';
+        products.forEach(product => {
+          grid.innerHTML += createProductCard(product);
+        });
+        noProducts.classList.add('hidden');
+      }
+    }
+
+    function filterByCategory(category) {
+      currentCategory = category;
+      
+      // Update active button
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+
+      const filtered = category === '' 
+        ? allProducts 
+        : allProducts.filter(p => p.category === category);
+      
+      displayProducts(filtered);
+    }
+
+    function filterProducts() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = allProducts.filter(product => 
+        product.title.toLowerCase().includes(searchTerm) ||
+        product.description.toLowerCase().includes(searchTerm) ||
+        product.category.toLowerCase().includes(searchTerm)
+      );
+      displayProducts(filtered);
+    }
+
+    // Search on Enter key
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.addEventListener('keyup', filterProducts);
+      }
+    });
+  </script>
+</body>
+</html>

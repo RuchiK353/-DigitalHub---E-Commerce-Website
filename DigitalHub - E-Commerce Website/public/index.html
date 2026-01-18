@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DigitalHub - Premium Digital Products & Courses</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header>
+    <div class="navbar">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">📚</div>
+        DigitalHub
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Learn, Create, Download Instantly</h1>
+    <p>Access premium digital products including online courses, design templates, software assets, and e-books</p>
+    <div class="hero-buttons">
+      <a href="products.html" class="btn btn-primary">Explore Products</a>
+      <a href="#featured" class="btn btn-outline">Learn More</a>
+    </div>
+  </section>
+
+  <!-- Featured Products Section -->
+  <section id="featured" class="products-section">
+    <div class="container">
+      <h2 class="section-title">Featured Products</h2>
+      <p class="section-subtitle">Discover our most popular digital products</p>
+      <div class="products-grid" id="featuredGrid">
+        <div class="spinner"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Preview -->
+  <section class="products-section" style="background: #f9fafb;">
+    <div class="container">
+      <h2 class="section-title">Browse by Category</h2>
+      <p class="section-subtitle">Find exactly what you're looking for</p>
+      <div class="products-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+        <div class="product-card" style="cursor: pointer;" onclick="goToCategory('Course')">
+          <div style="height: 200px; background: linear-gradient(135deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center; font-size: 3rem;">📚</div>
+          <div class="product-body">
+            <h3 class="product-title">Online Courses</h3>
+            <p class="product-description">Learn new skills with comprehensive video courses</p>
+          </div>
+        </div>
+        <div class="product-card" style="cursor: pointer;" onclick="goToCategory('Template')">
+          <div style="height: 200px; background: linear-gradient(135deg, #43cea2, #185a9d); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🎨</div>
+          <div class="product-body">
+            <h3 class="product-title">Templates</h3>
+            <p class="product-description">Ready-made templates for web and design</p>
+          </div>
+        </div>
+        <div class="product-card" style="cursor: pointer;" onclick="goToCategory('Asset')">
+          <div style="height: 200px; background: linear-gradient(135deg, #f093fb, #f5576c); display: flex; align-items: center; justify-content: center; font-size: 3rem;">💎</div>
+          <div class="product-body">
+            <h3 class="product-title">Assets</h3>
+            <p class="product-description">High-quality digital assets and resources</p>
+          </div>
+        </div>
+        <div class="product-card" style="cursor: pointer;" onclick="goToCategory('E-Book')">
+          <div style="height: 200px; background: linear-gradient(135deg, #fa709a, #fee140); display: flex; align-items: center; justify-content: center; font-size: 3rem;">📖</div>
+          <div class="product-body">
+            <h3 class="product-title">E-Books</h3>
+            <p class="product-description">Digital books and comprehensive guides</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="products-section">
+    <div class="container">
+      <h2 class="section-title">Why Choose DigitalHub?</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+        <div style="text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚡</div>
+          <h3 style="color: #1f2937; margin-bottom: 0.5rem;">Instant Access</h3>
+          <p style="color: #4b5563;">Get immediate access to digital products after purchase</p>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔒</div>
+          <h3 style="color: #1f2937; margin-bottom: 0.5rem;">Secure & Safe</h3>
+          <p style="color: #4b5563;">Your data is protected with industry-standard security</p>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">💯</div>
+          <h3 style="color: #1f2937; margin-bottom: 0.5rem;">Quality Assured</h3>
+          <p style="color: #4b5563;">All products are professionally created and curated</p>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">🌍</div>
+          <h3 style="color: #1f2937; margin-bottom: 0.5rem;">Global Access</h3>
+          <p style="color: #4b5563;">Available worldwide with multiple payment options</p>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">♻️</div>
+          <h3 style="color: #1f2937; margin-bottom: 0.5rem;">Lifetime Support</h3>
+          <p style="color: #4b5563;">Ongoing updates and customer support included</p>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">📱</div>
+          <h3 style="color: #1f2937; margin-bottom: 0.5rem;">Multi-Device</h3>
+          <p style="color: #4b5563;">Access your products on any device, anytime</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="products-section" style="background: var(--primary-gradient); padding: 3rem 0; margin-bottom: 0;">
+    <div class="container">
+      <h2 class="section-title" style="color: white;">Subscribe to Our Newsletter</h2>
+      <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.9);">Get exclusive deals and new product releases</p>
+      <div style="max-width: 500px; margin: 2rem auto;">
+        <form style="display: flex; gap: 0.5rem;" onsubmit="handleNewsletterSignup(event)">
+          <input 
+            type="email" 
+            placeholder="Enter your email" 
+            required 
+            style="flex: 1; padding: 0.75rem 1.5rem; border: none; border-radius: 25px; font-size: 1rem;"
+          >
+          <button type="submit" class="btn" style="background: white; color: #667eea;">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="products-section">
+    <div class="container">
+      <h2 class="section-title">Get In Touch</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 900px; margin: 2rem auto;">
+        <div style="text-align: center;">
+          <h3 style="color: #1f2937; margin-bottom: 0.5rem;">📧 Email</h3>
+          <p><a href="mailto:support@digitalhub.com" style="color: #667eea; text-decoration: none;">support@digitalhub.com</a></p>
+        </div>
+        <div style="text-align: center;">
+          <h3 style="color: #1f2937; margin-bottom: 0.5rem;">📞 Phone</h3>
+          <p><a href="tel:+1234567890" style="color: #667eea; text-decoration: none;">+1 (234) 567-890</a></p>
+        </div>
+        <div style="text-align: center;">
+          <h3 style="color: #1f2937; margin-bottom: 0.5rem;">📍 Location</h3>
+          <p>123 Digital Street, Tech City, TX 75001</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>About Us</h3>
+          <p>DigitalHub is your one-stop destination for premium digital products including courses, templates, and assets.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Categories</h3>
+          <ul>
+            <li><a href="products.html?category=Course">Courses</a></li>
+            <li><a href="products.html?category=Template">Templates</a></li>
+            <li><a href="products.html?category=Asset">Assets</a></li>
+            <li><a href="products.html?category=E-Book">E-Books</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Info</h3>
+          <div class="footer-contact">
+            <div class="footer-contact-item">📧 support@digitalhub.com</div>
+            <div class="footer-contact-item">📞 +1 (234) 567-890</div>
+            <div class="footer-contact-item">📍 123 Digital Street, Tech City</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-divider">
+      <p>&copy; 2025 DigitalHub. All rights reserved. | Designed & Developed with ❤️</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Load featured products on homepage
+    document.addEventListener('DOMContentLoaded', loadFeaturedProducts);
+
+    function loadFeaturedProducts() {
+      fetch('/api/products')
+        .then(res => res.json())
+        .then(products => {
+          const grid = document.getElementById('featuredGrid');
+          grid.innerHTML = '';
+          
+          // Display first 6 products
+          products.slice(0, 6).forEach(product => {
+            grid.innerHTML += createProductCard(product);
+          });
+        })
+        .catch(err => {
+          console.error('Error loading products:', err);
+          document.getElementById('featuredGrid').innerHTML = '<p class="no-products">Error loading products</p>';
+        });
+    }
+
+    function goToCategory(category) {
+      window.location.href = `products.html?category=${category}`;
+    }
+
+    function handleNewsletterSignup(e) {
+      e.preventDefault();
+      const modal = document.getElementById('successModal');
+      document.getElementById('modalMessage').textContent = 'Thanks for subscribing! Check your email for exclusive offers.';
+      modal.classList.add('show');
+    }
+  </script>
+</body>
+</html>

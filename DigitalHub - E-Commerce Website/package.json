@@ -1,0 +1,33 @@
+{
+  "name": "digitalhub-ecommerce",
+  "version": "1.0.0",
+  "description": "A dynamic digital products e-commerce website with courses, templates, and digital assets",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "e-commerce",
+    "digital-products",
+    "courses",
+    "templates",
+    "nodejs",
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/digitalhub-ecommerce"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/digitalhub-ecommerce/issues"
+  },
+  "homepage": "https://github.com/yourusername/digitalhub-ecommerce#readme"
+}

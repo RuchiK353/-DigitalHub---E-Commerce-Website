@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details - DigitalHub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header>
+    <div class="navbar">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">📚</div>
+        DigitalHub
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Product Detail Section -->
+  <section class="product-detail">
+    <div class="container">
+      <div id="detailContainer" class="detail-container">
+        <div class="spinner"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Products Section -->
+  <section class="products-section">
+    <div class="container">
+      <h2 class="section-title">Related Products</h2>
+      <p class="section-subtitle">You might also like these products</p>
+      <div class="products-grid" id="relatedGrid">
+        <div class="spinner"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>About Us</h3>
+          <p>DigitalHub is your one-stop destination for premium digital products including courses, templates, and assets.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Categories</h3>
+          <ul>
+            <li><a href="products.html?category=Course">Courses</a></li>
+            <li><a href="products.html?category=Template">Templates</a></li>
+            <li><a href="products.html?category=Asset">Assets</a></li>
+            <li><a href="products.html?category=E-Book">E-Books</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Info</h3>
+          <div class="footer-contact">
+            <div class="footer-contact-item">📧 support@digitalhub.com</div>
+            <div class="footer-contact-item">📞 +1 (234) 567-890</div>
+            <div class="footer-contact-item">📍 123 Digital Street, Tech City</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-divider">
+      <p>&copy; 2025 DigitalHub. All rights reserved. | Designed & Developed with ❤️</p>
+    </div>
+  </footer>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">✓ Success</div>
+      <div class="modal-body" id="modalMessage">Product added to cart successfully!</div>
+      <div class="modal-footer">
+        <button class="btn-confirm" onclick="closeModal()">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Access Modal -->
+  <div id="accessModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">⬇️ Access Your Product</div>
+      <div class="modal-body">
+        <p style="margin-bottom: 1rem;">Your product is now available for download/access!</p>
+        <p id="accessDetails" style="background: #f3f4f6; padding: 1rem; border-radius: 8px; font-size: 0.95rem; line-height: 1.6;"></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-close" onclick="closeModal()">Close</button>
+        <button class="btn-confirm" onclick="simulateDownload()">Download Now</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    let currentProduct = null;
+    let allProducts = [];
+
+    document.addEventListener('DOMContentLoaded', loadProductDetail);
+
+    function loadProductDetail() {
+      const params = new URLSearchParams(window.location.search);
+      const productId = params.get('id');
+
+      if (!productId) {
+        document.getElementById('detailContainer').innerHTML = '<p class="no-products">Product not found</p>';
+        return;
+      }
+
+      fetch(`/api/products/${productId}`)
+        .then(res => res.json())
+        .then(product => {
+          if (product.error) {
+            document.getElementById('detailContainer').innerHTML = '<p class="no-products">Product not found</p>';
+            return;
+          }
+          
+          currentProduct = product;
+          displayProductDetail(product);
+          loadRelatedProducts(product.category, product.id);
+        })
+        .catch(err => {
+          console.error('Error loading product:', err);
+          document.getElementById('detailContainer').innerHTML = '<p class="no-products">Error loading product details</p>';
+        });
+    }
+
+    function displayProductDetail(product) {
+      const container = document.getElementById('detailContainer');
+      container.innerHTML = `
+        <div>
+          <img src="${product.image}" alt="${product.title}" class="detail-image" onerror="this.src='https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=400&fit=crop'">
+        </div>
+        <div class="detail-info">
+          <div class="detail-category">${product.category}</div>
+          <h1>${product.title}</h1>
+          <div class="detail-price">$${product.price.toFixed(2)}</div>
+          <div class="detail-access">✓ ${product.access}</div>
+          <p class="detail-description">${product.details}</p>
+          <div class="detail-buttons">
+            <button class="btn-access" onclick="openAccessModal('${product.title}')">
+              ${product.category === 'E-Book' ? '📥 Download Now' : '🔗 Access Now'}
+            </button>
+            <button class="btn-wishlist" onclick="addToWishlist('${product.title}')">❤️ Add to Wishlist</button>
+          </div>
+          <div class="detail-specs">
+            <div class="spec-item">
+              <span class="spec-label">Product ID</span>
+              <span class="spec-value">#${product.id.toString().padStart(5, '0')}</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Category</span>
+              <span class="spec-value">${product.category}</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Access Type</span>
+              <span class="spec-value">${product.access}</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Price</span>
+              <span class="spec-value">$${product.price.toFixed(2)}</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Format</span>
+              <span class="spec-value">${getFormatByCategory(product.category)}</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Support</span>
+              <span class="spec-value">✓ Lifetime Access & Updates</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function getFormatByCategory(category) {
+      const formats = {
+        'Course': 'Video Content (HD)',
+        'Template': 'Figma, Sketch, PSD',
+        'Asset': 'AI, EPS, PNG, SVG',
+        'E-Book': 'PDF, EPUB'
+      };
+      return formats[category] || 'Digital File';
+    }
+
+    function loadRelatedProducts(category, excludeId) {
+      fetch('/api/products')
+        .then(res => res.json())
+        .then(products => {
+          allProducts = products;
+          const related = products
+            .filter(p => p.category === category && p.id !== excludeId)
+            .slice(0, 4);
+          
+          const grid = document.getElementById('relatedGrid');
+          if (related.length === 0) {
+            grid.innerHTML = '<p class="no-products">No related products found</p>';
+          } else {
+            grid.innerHTML = related.map(p => createProductCard(p)).join('');
+          }
+        });
+    }
+
+    function openAccessModal(productTitle) {
+      const modal = document.getElementById('accessModal');
+      const details = document.getElementById('accessDetails');
+      
+      details.innerHTML = `
+        <strong style="display: block; margin-bottom: 0.5rem;">📦 ${productTitle}</strong>
+        You can now access this product through:<br><br>
+        ✓ Instant download link<br>
+        ✓ Cloud storage access<br>
+        ✓ Account dashboard<br>
+        ✓ Email delivery<br><br>
+        A download link has been sent to your email address.
+      `;
+      
+      modal.classList.add('show');
+    }
+
+    function simulateDownload() {
+      const modal = document.getElementById('successModal');
+      document.getElementById('modalMessage').textContent = '✓ Download started! Check your downloads folder.';
+      closeModal();
+      modal.classList.add('show');
+    }
+
+    function addToWishlist(productTitle) {
+      const modal = document.getElementById('successModal');
+      document.getElementById('modalMessage').textContent = `'${productTitle}' added to your wishlist!`;
+      modal.classList.add('show');
+    }
+
+    function closeModal() {
+      document.querySelectorAll('.modal').forEach(m => m.classList.remove('show'));
+    }
+
+    // Close modal when clicking outside
+    document.addEventListener('click', function(event) {
+      if (event.target.classList.contains('modal')) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>

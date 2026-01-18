@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "title": "Web Development Masterclass",
+    "price": 49.99,
+    "category": "Course",
+    "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=400&fit=crop",
+    "description": "Comprehensive web development course covering HTML, CSS, JavaScript, and modern frameworks. Learn to build responsive websites from scratch.",
+    "details": "This masterclass covers 50+ hours of video content including projects, quizzes, and real-world applications. You'll learn the latest web technologies and best practices used by professional developers.",
+    "access": "Instant lifetime access"
+  },
+  {
+    "id": 2,
+    "title": "Premium UI/UX Design Templates",
+    "price": 29.99,
+    "category": "Template",
+    "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop",
+    "description": "30 professionally designed UI/UX templates for web and mobile applications. Fully customizable Figma files included.",
+    "details": "Get access to 30 ready-to-use design templates including landing pages, dashboards, mobile apps, and admin panels. All files are in Figma format for easy customization.",
+    "access": "Download instantly"
+  },
+  {
+    "id": 3,
+    "title": "React Advanced Patterns",
+    "price": 39.99,
+    "category": "Course",
+    "image": "https://images.unsplash.com/photo-1633356122544-f134324ef6db?w=600&h=400&fit=crop",
+    "description": "Master advanced React patterns including hooks, context API, and performance optimization techniques.",
+    "details": "Learn from industry experts about advanced React patterns, state management, and building scalable applications. Includes 8 real-world projects.",
+    "access": "Instant lifetime access"
+  },
+  {
+    "id": 4,
+    "title": "Complete Logo Design Pack",
+    "price": 24.99,
+    "category": "Asset",
+    "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop",
+    "description": "1000+ high-quality logo templates in AI, EPS, and PNG formats. Perfect for startups and small businesses.",
+    "details": "Access a comprehensive collection of professional logo designs suitable for various industries. Includes editable source files in multiple formats.",
+    "access": "Download instantly"
+  },
+  {
+    "id": 5,
+    "title": "Digital Marketing E-Book",
+    "price": 19.99,
+    "category": "E-Book",
+    "image": "https://images.unsplash.com/photo-150784272343-583f20270319?w=600&h=400&fit=crop",
+    "description": "The ultimate guide to digital marketing strategies, SEO, social media, and content marketing in 2025.",
+    "details": "Comprehensive 500+ page e-book covering all aspects of modern digital marketing. Includes case studies, templates, and actionable strategies.",
+    "access": "Download as PDF"
+  },
+  {
+    "id": 6,
+    "title": "WordPress Development Course",
+    "price": 44.99,
+    "category": "Course",
+    "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=400&fit=crop",
+    "description": "Complete WordPress development course from basics to advanced plugin and theme creation.",
+    "details": "Learn to build professional WordPress websites and plugins. Covers PHP, database management, and deployment. Includes 40+ hours of content.",
+    "access": "Instant lifetime access"
+  },
+  {
+    "id": 7,
+    "title": "Mobile App UI Kit",
+    "price": 34.99,
+    "category": "Template",
+    "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop",
+    "description": "Professional mobile app UI kit with 200+ components and screens for iOS and Android apps.",
+    "details": "Complete UI kit with buttons, cards, forms, navigation, and more. All components are fully customizable in Sketch and Figma.",
+    "access": "Download instantly"
+  },
+  {
+    "id": 8,
+    "title": "SEO Optimization Guide",
+    "price": 29.99,
+    "category": "E-Book",
+    "image": "https://images.unsplash.com/photo-1507842872836-d85b3d71aad9?w=600&h=400&fit=crop",
+    "description": "Step-by-step guide to ranking your website on Google and improving organic traffic.",
+    "details": "Learn proven SEO techniques, keyword research, link building, and technical SEO. Includes tools, templates, and resource links.",
+    "access": "Download as PDF"
+  },
+  {
+    "id": 9,
+    "title": "Python Programming Essentials",
+    "price": 54.99,
+    "category": "Course",
+    "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=400&fit=crop",
+    "description": "Master Python programming with projects, algorithms, and best practices for beginners to intermediate developers.",
+    "details": "60+ hours of comprehensive Python content including data structures, OOP, web scraping, and more. Includes 15+ real-world projects.",
+    "access": "Instant lifetime access"
+  },
+  {
+    "id": 10,
+    "title": "Brand Identity Templates",
+    "price": 39.99,
+    "category": "Template",
+    "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop",
+    "description": "Complete brand identity package including logo, business cards, letterheads, and social media templates.",
+    "details": "Professional brand kit templates that you can customize for your business. Includes colors, fonts, guidelines, and usage examples.",
+    "access": "Download instantly"
+  }
+]
